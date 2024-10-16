@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,135 +23,130 @@ import java.util.List;
  *
  * @author user
  */
-public class Hospital {
-    String nombre;
-    String nit;
-    double presupuesto;
-    double gastos;
-    Localizacion localizacion;
-    Gerente gerente;
-    List<Empleado> empleados;
-    List<Paciente> pacientes;
-    Inventario inventario;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-    public Hospital(String nombre, String nit, double presupuesto, double gastos, Localizacion localizacion, Gerente gerente) {
+public class Hospital {
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String logo;
+    private double presupuesto;
+    private double ventaAnual;
+    private Date fechaFundacion ;
+    private boolean estadoFinanciero;
+    private Gerente gerente;
+    private Localizacion localizacion;
+    private List<Empleado> empleados = new ArrayList<>();
+    private List<Paciente> pacientes = new ArrayList<>();
+
+    public Hospital(String nombre, String direccion, String telefono, String logo, double presupuesto,
+                    double ventaAnual, Date fechaFundacion, Gerente gerente, Localizacion localizacion) {
         this.nombre = nombre;
-        this.nit = nit;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.logo = logo;
         this.presupuesto = presupuesto;
-        this.gastos = gastos;
-        this.localizacion = localizacion;
+        this.ventaAnual = ventaAnual;
+        this.fechaFundacion = fechaFundacion;
+        this.estadoFinanciero = true; // Por defecto, activo
         this.gerente = gerente;
-        this.empleados = new ArrayList<>();
-        this.pacientes = new ArrayList<>();
-        this.inventario = new Inventario();
+        this.localizacion = localizacion;
+    }
+
+    public void registrarPatrocinio(double monto) {
+        this.presupuesto += monto;
+        if (this.presupuesto < 0) {
+            this.estadoFinanciero = false; // Cambia a quiebra
+            informarUsuario();
+        }
+    }
+
+    public void actualizarEstado() {
+        if (this.presupuesto < 0) {
+            this.estadoFinanciero = false; // Cambia a quiebra
+        }
+    }
+
+    public void informarUsuario() {
+        System.out.println("El estado del hospital ha cambiado a: " + (estadoFinanciero ? "Activo" : "En quiebra"));
     }
 
     public void agregarEmpleado(Empleado empleado) {
         empleados.add(empleado);
     }
 
-    public void registrarPaciente(Paciente paciente) {
+    public void agregarPaciente(Paciente paciente) {
         pacientes.add(paciente);
     }
 
-    public void agregarMedicamento(Medicamento medicamento) {
-        inventario.agregarMedicamento(medicamento);
+    public void actualizarDatosHospital(String nombre, String direccion, String telefono, String logo,
+                                         double presupuesto, Date fechaFundacion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.logo = logo;
+        this.presupuesto = presupuesto;
+        this.fechaFundacion = fechaFundacion;
     }
 
-    public void mostrarEmpleados() {
-        System.out.println("Lista de empleados:");
-        for (Empleado empleado : empleados) {
-            System.out.println(empleado);
-        }
-    }
+    // Métodos para persistencia
+    public void cargarDatos(String rutaArchivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(":", 2);
+                if (partes.length < 2) {
+                    System.err.println("La línea no contiene suficientes datos: " + linea);
+                    continue; // Saltar esta línea
+                }
+                String clave = partes[0].trim();
+                String valor = partes[1].trim();
+                
+                switch (clave) {
+                    case "Hospital":
+                        String[] hospitalDatos = valor.split(",");
+                        this.nombre = hospitalDatos[0].trim();
+                        this.direccion = hospitalDatos[1].trim();
+                        this.telefono = hospitalDatos[2].trim();
+                        this.logo = hospitalDatos[3].trim();
+                        this.presupuesto = Double.parseDouble(hospitalDatos[4].trim());
+                        this.ventaAnual = Double.parseDouble(hospitalDatos[5].trim());
 
-    public void mostrarPacientes() {
-        System.out.println("Lista de pacientes:");
-        for (Paciente paciente : pacientes) {
-            System.out.println(paciente);
-        }
-    }
+                        // Cargar la fecha en formato YYYY-MM-DD
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        this.fechaFundacion = sdf.parse(hospitalDatos[6].trim());
 
-    public void generarReporteSalarios() {
-        System.out.println("Reporte de salarios:");
-        for (Empleado empleado : empleados) {
-            System.out.println(empleado.nombre + " - Salario: " + empleado.calcularSalario());
-        }
-    }
-
-    public void guardarDatos(String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write("Hospital\n");
-            writer.write(nombre + "," + nit + "," + presupuesto + "," + gastos + "," + localizacion + "," + gerente + "\n");
-            writer.write("Empleados\n");
-            for (Empleado empleado : empleados) {
-                writer.write(empleado + "\n");
-            }
-            writer.write("Pacientes\n");
-            for (Paciente paciente : pacientes) {
-                writer.write(paciente + "\n");
-            }
-            writer.write("Medicamentos\n");
-            writer.write(inventario.toString());
-        } catch (IOException e) {
-            System.out.println("Error al guardar datos: " + e.getMessage());
-        }
-    }
-
-    public static Hospital cargarDatos(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line = reader.readLine();
-            if (!line.equals("Hospital")) {
-                return null; // Formato incorrecto
-            }
-
-            line = reader.readLine();
-            String[] hospitalData = line.split(",");
-            Localizacion localizacion = new Localizacion(hospitalData[4], hospitalData[5]);
-            Gerente gerente = new Gerente(hospitalData[6], hospitalData[7]);
-
-            Hospital hospital = new Hospital(hospitalData[0], hospitalData[1], Double.parseDouble(hospitalData[2]),
-                    Double.parseDouble(hospitalData[3]), localizacion, gerente);
-
-            line = reader.readLine(); // Empleados
-            while (!(line = reader.readLine()).equals("Pacientes")) {
-                String[] empleadoData = line.split(",");
-                if (empleadoData.length == 6) {
-                    hospital.agregarEmpleado(new EmpleadoSalud(empleadoData[0], empleadoData[1], Integer.parseInt(empleadoData[2]),
-                            Double.parseDouble(empleadoData[3]), empleadoData[4], Integer.parseInt(empleadoData[5])));
-                } else if (empleadoData.length == 5) {
-                    hospital.agregarEmpleado(new EmpleadoOperativo(empleadoData[0], empleadoData[1], Integer.parseInt(empleadoData[2]),
-                            Double.parseDouble(empleadoData[3]), empleadoData[4]));
+                        // Asignar el estado como boolean
+                        this.estadoFinanciero = hospitalDatos[7].trim().equalsIgnoreCase("Activo");
+                        break;
+                    case "Empleado":
+                        // Procesar datos del empleado
+                        break;
+                    case "Paciente":
+                        // Procesar datos del paciente
+                        break;
+                    default:
+                        System.err.println("Tipo de dato desconocido: " + clave);
                 }
             }
-
-            line = reader.readLine(); // Pacientes
-            while (!(line = reader.readLine()).equals("Medicamentos")) {
-                String[] pacienteData = line.split(",");
-                hospital.registrarPaciente(new Paciente(pacienteData[0], pacienteData[1], Integer.parseInt(pacienteData[2]),
-                        pacienteData[3], pacienteData[4]));
-            }
-
-            // Medicamentos
-            String medicamentoLine;
-            while ((medicamentoLine = reader.readLine()) != null) {
-                String[] medicamentoData = medicamentoLine.split(",");
-                if (medicamentoData.length == 3) {
-                    hospital.agregarMedicamento(new MedicamentoGenerico(medicamentoData[0], medicamentoData[1], Double.parseDouble(medicamentoData[2])));
-                } else if (medicamentoData.length == 4) {
-                    hospital.agregarMedicamento(new MedicamentoDeMarca(medicamentoData[0], medicamentoData[1], Double.parseDouble(medicamentoData[2]), medicamentoData[3]));
-                }
-            }
-
-            return hospital;
-        } catch (IOException e) {
-            System.out.println("Error al cargar datos: " + e.getMessage());
+        } catch (IOException | NumberFormatException | ParseException e) {
+            System.err.println("Error al cargar datos: " + e.getMessage());
         }
-        return null;
     }
 
-    @Override
-    public String toString() {
-        return "Hospital: " + nombre + ", NIT: " + nit + ", Presupuesto: " + presupuesto + ", Gastos: " + gastos;
+    public String guardarDatos() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hospital: ").append(this.nombre).append(", ")
+          .append(this.direccion).append(", ")
+          .append(this.telefono).append(", ")
+          .append(this.logo).append(", ")
+          .append(this.presupuesto).append(", ")
+          .append(this.ventaAnual).append(", ")
+          .append(new SimpleDateFormat("yyyy-MM-dd").format(this.fechaFundacion)).append(", ")
+          .append(this.estadoFinanciero ? "Activo" : "Inactivo");
+        // Puedes agregar otros datos si es necesario
+        return sb.toString();
     }
 }

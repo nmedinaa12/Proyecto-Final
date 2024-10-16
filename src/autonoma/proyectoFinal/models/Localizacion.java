@@ -11,18 +11,19 @@ import java.io.Serializable;
  * @author user
  */
 public class Localizacion {
-    String direccion;
-    String ciudad;
+    private double latitud;
+    private double longitud;
 
-    public Localizacion(String direccion, String ciudad) {
-        this.direccion = direccion;
-        this.ciudad = ciudad;
+    public Localizacion(double latitud, double longitud) {
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     @Override
     public String toString() {
-        return direccion + "," + ciudad;
+        return "Localización: " + latitud + ", " + longitud;
     }
 }
+
 
 

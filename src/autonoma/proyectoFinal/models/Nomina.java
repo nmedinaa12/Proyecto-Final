@@ -4,10 +4,24 @@
  */
 package autonoma.proyectoFinal.models;
 
+import java.util.List;
+
 /**
  *
  * @author user
  */
+
 public class Nomina {
-    
+    private List<Empleado> empleados;
+
+    public Nomina(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public void generarNomina() {
+        for (Empleado emp : empleados) {
+            System.out.println(emp + ", Salario: " + emp.calcularSalario());
+        }
+    }
 }
+

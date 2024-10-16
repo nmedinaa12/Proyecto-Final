@@ -10,20 +10,21 @@ import java.io.Serializable;
  *
  * @author user
  */
-public abstract class Medicamento implements Serializable {
+public abstract class Medicamento {
     protected String nombre;
-    protected String tipo;
     protected double precio;
 
-    public Medicamento(String nombre, String tipo, double precio) {
+    public Medicamento(String nombre, double precio) {
         this.nombre = nombre;
-        this.tipo = tipo;
         this.precio = precio;
     }
 
+    public abstract void aplicarEfecto();
+
     @Override
     public String toString() {
-        return nombre + "," + tipo + "," + precio;
+        return "Medicamento: " + nombre + ", Precio: " + precio;
     }
 }
+
 

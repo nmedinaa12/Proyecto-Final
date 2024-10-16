@@ -4,41 +4,26 @@
  */
 package autonoma.proyectoFinal.models;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  *
  * @author user
  */
+
 public class Inventario {
-    List<Medicamento> medicamentos;
+    private Map<Medicamento, Integer> medicamentos = new HashMap<>();
 
-    public Inventario() {
-        medicamentos = new ArrayList<>();
+    public void agregarMedicamento(Medicamento medicamento, int cantidad) {
+        medicamentos.put(medicamento, cantidad);
     }
 
-    public void agregarMedicamento(Medicamento medicamento) {
-        medicamentos.add(medicamento);
-    }
-
-    public void venderMedicamento(String nombre) {
-        for (Medicamento medicamento : medicamentos) {
-            if (medicamento.nombre.equals(nombre)) {
-                System.out.println("Vendiendo medicamento: " + medicamento);
-                return;
-            }
+    public void venderMedicamento(Medicamento medicamento, int cantidad) throws Exception {
+        if (!medicamentos.containsKey(medicamento) || medicamentos.get(medicamento) < cantidad) {
+            throw new Exception("Medicamento no disponible en el inventario.");
         }
-        System.out.println("Medicamento no encontrado: " + nombre);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Medicamento medicamento : medicamentos) {
-            sb.append(medicamento.toString()).append("\n");
-        }
-        return sb.toString();
+        medicamentos.put(medicamento, medicamentos.get(medicamento) - cantidad);
     }
 }

@@ -11,16 +11,20 @@ import java.io.Serializable;
  * @author user
  */
 public class Gerente {
-    String nombre;
-    String cedula;
+    private String nombre;
+    private String cedula;
+    private int edad;
+    private String carrera;
 
-    public Gerente(String nombre, String cedula) {
+    public Gerente(String nombre, String cedula, int edad, String carrera) {
         this.nombre = nombre;
         this.cedula = cedula;
+        this.edad = edad;
+        this.carrera = carrera;
     }
 
     @Override
     public String toString() {
-        return nombre + "," + cedula;
+        return "Gerente: " + nombre + ", " + cedula + ", " + edad + ", " + carrera;
     }
 }

@@ -4,45 +4,60 @@
  */
 package autonoma.proyectoFinal.main;
 
-import autonoma.proyectoFinal.models.EmpleadoOperativo;
-import autonoma.proyectoFinal.models.EmpleadoSalud;
+import autonoma.proyectoFinal.models.EmpleadoAreaSalud;
+import autonoma.proyectoFinal.models.Farmacia;
 import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
+import autonoma.proyectoFinal.models.Inventario;
 import autonoma.proyectoFinal.models.Localizacion;
-import autonoma.proyectoFinal.models.MedicamentoDeMarca;
+import autonoma.proyectoFinal.models.Medicamento;
 import autonoma.proyectoFinal.models.MedicamentoGenerico;
+import autonoma.proyectoFinal.models.MedicamentoMarca;
 import autonoma.proyectoFinal.models.Paciente;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author user
  */
+
+
 public class main {
     public static void main(String[] args) {
-        Localizacion localizacion = new Localizacion("Calle Falsa 123", "Ciudad Ficticia");
-        Gerente gerente = new Gerente("Juan Pérez", "123456789");
-        Hospital hospital = new Hospital("Hospital General", "NIT123", 1000000.0, 500000.0, localizacion, gerente);
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaFundacion = sdf.parse("2000-01-01");
 
-        // Agregar empleados, pacientes y medicamentos
-        hospital.agregarEmpleado(new EmpleadoSalud("Dr. Smith", "987654321", 45, 50.0, "Cardiología", 160));
-        hospital.agregarEmpleado(new EmpleadoOperativo("Ana Gómez", "456789123", 30, 3000.0, "Asistente"));
-        hospital.registrarPaciente(new Paciente("Carlos López", "321654987", 30, "carlos@example.com", "555-0123"));
-        hospital.agregarMedicamento(new MedicamentoGenerico("Paracetamol", "Analgesico", 500.0));
-        hospital.agregarMedicamento(new MedicamentoDeMarca("Ibuprofeno", "Anti-inflamatorio", 1000.0, "Marca X"));
+            Gerente gerente = new Gerente("Juan Pérez", "123456789", 45, "Medicina");
+            Localizacion localizacion = new Localizacion(4.60971, -74.08175); // Bogotá
+            Hospital hospital = new Hospital("Hospital San José St. Bonaventure", "Calle 123", "555-1234",
+                    "logo.png", 1000000.0, 200000.0, fechaFundacion, gerente, localizacion);
 
-        // Guardar datos
-        hospital.guardarDatos("hospital_data.txt");
+            EmpleadoAreaSalud medico = new EmpleadoAreaSalud("Dr. Carlos", "987654321", 35, 5000.0, "Cardiología", 40);
+            hospital.agregarEmpleado(medico);
 
-        // Cargar datos
-        Hospital hospitalCargado = Hospital.cargarDatos("hospital_data.txt");
-        if (hospitalCargado != null) {
-            System.out.println("Datos cargados:");
-            System.out.println(hospitalCargado);
-            hospitalCargado.mostrarEmpleados();
-            hospitalCargado.mostrarPacientes();
-            hospitalCargado.generarReporteSalarios();
-        } else {
-            System.out.println("No se pudieron cargar los datos.");
+            Paciente paciente = new Paciente("María López", "456789123", 30, "maria@example.com", true, "555-6789");
+            hospital.agregarPaciente(paciente);
+
+            // Agregar medicamentos
+            Medicamento medicamento1 = new MedicamentoMarca("Paracetamol", 1000, "Marca A");
+            Medicamento medicamento2 = new MedicamentoGenerico("Ibuprofeno", 800, "Ibuprofeno");
+            Inventario inventario = new Inventario();
+            Farmacia farmacia = new Farmacia(inventario);
+            farmacia.agregarMedicamento(medicamento1);
+            farmacia.agregarMedicamento(medicamento2);
+
+            // Registrar patrocinio
+            hospital.registrarPatrocinio(200000);
+            String datosGuardados = hospital.guardarDatos();
+            System.out.println(datosGuardados);
+
+            // Cargar datos desde archivo
+            hospital.cargarDatos("hospital_data.txt");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

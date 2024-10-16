@@ -11,10 +11,10 @@ import java.io.Serializable;
  * @author user
  */
 public abstract class Empleado {
-    String nombre;
-    String cedula;
-    int edad;
-    double salario;
+    protected String nombre;
+    protected String cedula;
+    protected int edad;
+    protected double salario;
 
     public Empleado(String nombre, String cedula, int edad, double salario) {
         this.nombre = nombre;
@@ -27,6 +27,7 @@ public abstract class Empleado {
 
     @Override
     public String toString() {
-        return nombre + "," + cedula + "," + edad + "," + salario;
+        return "Empleado: " + nombre + ", " + cedula + ", " + edad + ", " + salario;
     }
 }
+
