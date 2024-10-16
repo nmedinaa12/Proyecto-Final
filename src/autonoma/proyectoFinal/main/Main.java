@@ -19,44 +19,30 @@ import autonoma.proyectoFinal.models.Paciente;
  */
 public class main {
     public static void main(String[] args) {
-        Localizacion localizacion = new Localizacion("Colombia", "Medellín", "Calle 123");
-        Gerente gerente = new Gerente("Juan Pérez", "12345678", 45, "Administración");
+        Localizacion localizacion = new Localizacion("Calle Falsa 123", "Ciudad Ficticia");
+        Gerente gerente = new Gerente("Juan Pérez", "123456789");
+        Hospital hospital = new Hospital("Hospital General", "NIT123", 1000000.0, 500000.0, localizacion, gerente);
 
-        // Crear hospital
-        Hospital hospital = new Hospital("Hospital San José St. Bonaventure", "Calle Falsa 123", "321654987", 1000000, 50000, "01/01/2000", localizacion, gerente);
+        // Agregar empleados, pacientes y medicamentos
+        hospital.agregarEmpleado(new EmpleadoSalud("Dr. Smith", "987654321", 45, 50.0, "Cardiología", 160));
+        hospital.agregarEmpleado(new EmpleadoOperativo("Ana Gómez", "456789123", 30, 3000.0, "Asistente"));
+        hospital.registrarPaciente(new Paciente("Carlos López", "321654987", 30, "carlos@example.com", "555-0123"));
+        hospital.agregarMedicamento(new MedicamentoGenerico("Paracetamol", "Analgesico", 500.0));
+        hospital.agregarMedicamento(new MedicamentoDeMarca("Ibuprofeno", "Anti-inflamatorio", 1000.0, "Marca X"));
 
-        // Agregar empleados
-        hospital.agregarEmpleado(new EmpleadoSalud("Diana Ruiz", "87654321", 30, 3000, "Médico", 160));
-        hospital.agregarEmpleado(new EmpleadoOperativo("Pedro Gómez", "12312312", 28, 1500, "Limpieza"));
+        // Guardar datos
+        hospital.guardarDatos("hospital_data.txt");
 
-        // Registrar pacientes
-        hospital.registrarPaciente(new Paciente("Ana Torres", "11223344", 25, "ana@example.com", "3001234567"));
-        hospital.registrarPaciente(new Paciente("Luis Martínez", "22334455", 40, "luis@example.com", "3007654321"));
-
-        // Agregar medicamentos
-        hospital.agregarMedicamento(new MedicamentoGenerico("Paracetamol", "Analgésico", 5.00));
-        hospital.agregarMedicamento(new MedicamentoDeMarca("Ibuprofeno", "Antiinflamatorio", 15.00, "Farmacéutica XYZ"));
-
-        // Mostrar empleados y pacientes
-        hospital.mostrarEmpleados();
-        hospital.mostrarPacientes();
-
-        // Generar reporte de salarios
-        hospital.generarReporteSalarios();
-
-        // Vender un medicamento
-        hospital.venderMedicamento("Paracetamol");
-
-        // Registrar un patrocinio
-        hospital.registrarPatrocinio(10000);
-
-        // Guardar datos del hospital
-        hospital.guardarDatos("hospital.dat");
-
-        // Cargar datos del hospital
-        Hospital hospitalCargado = Hospital.cargarDatos("hospital.dat");
+        // Cargar datos
+        Hospital hospitalCargado = Hospital.cargarDatos("hospital_data.txt");
         if (hospitalCargado != null) {
-            System.out.println("Hospital cargado exitosamente: " + hospitalCargado.nombre);
+            System.out.println("Datos cargados:");
+            System.out.println(hospitalCargado);
+            hospitalCargado.mostrarEmpleados();
+            hospitalCargado.mostrarPacientes();
+            hospitalCargado.generarReporteSalarios();
+        } else {
+            System.out.println("No se pudieron cargar los datos.");
         }
     }
 }

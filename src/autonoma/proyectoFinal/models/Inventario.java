@@ -12,31 +12,33 @@ import java.util.List;
  *
  * @author user
  */
-public class Inventario implements Serializable {
-    private List<Medicamento> listaMedicamentos;
+public class Inventario {
+    List<Medicamento> medicamentos;
 
     public Inventario() {
-        this.listaMedicamentos = new ArrayList<>();
+        medicamentos = new ArrayList<>();
     }
 
     public void agregarMedicamento(Medicamento medicamento) {
-        listaMedicamentos.add(medicamento);
+        medicamentos.add(medicamento);
     }
 
-    public void venderMedicamento(String nombreMedicamento) {
-        Medicamento medicamentoAVender = null;
-        for (Medicamento medicamento : listaMedicamentos) {
-            if (medicamento.getNombre().equalsIgnoreCase(nombreMedicamento)) {
-                medicamentoAVender = medicamento;
-                break;
+    public void venderMedicamento(String nombre) {
+        for (Medicamento medicamento : medicamentos) {
+            if (medicamento.nombre.equals(nombre)) {
+                System.out.println("Vendiendo medicamento: " + medicamento);
+                return;
             }
         }
+        System.out.println("Medicamento no encontrado: " + nombre);
+    }
 
-        if (medicamentoAVender != null) {
-            listaMedicamentos.remove(medicamentoAVender);
-            System.out.println("Medicamento vendido: " + nombreMedicamento);
-        } else {
-            System.out.println("Medicamento no encontrado: " + nombreMedicamento);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Medicamento medicamento : medicamentos) {
+            sb.append(medicamento.toString()).append("\n");
         }
+        return sb.toString();
     }
 }

@@ -21,12 +21,9 @@ public abstract class Medicamento implements Serializable {
         this.precio = precio;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     @Override
     public String toString() {
-        return nombre + " (" + tipo + "), Precio: " + precio;
+        return nombre + "," + tipo + "," + precio;
     }
 }
+

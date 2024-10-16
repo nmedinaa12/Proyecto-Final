@@ -8,9 +8,21 @@ package autonoma.proyectoFinal.models;
  *
  * @author user
  */
-public class EmpleadoOperativo {
+public class EmpleadoOperativo extends Empleado {
+    String tipoTrabajo;
 
-    public EmpleadoOperativo(String pedro_Gómez, String string, int par, int par1, String limpieza) {
+    public EmpleadoOperativo(String nombre, String cedula, int edad, double salario, String tipoTrabajo) {
+        super(nombre, cedula, edad, salario);
+        this.tipoTrabajo = tipoTrabajo;
     }
-    
+
+    @Override
+    public double calcularSalario() {
+        return salario; // Suponiendo salario fijo
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "," + tipoTrabajo;
+    }
 }

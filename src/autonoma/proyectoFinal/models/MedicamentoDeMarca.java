@@ -9,7 +9,7 @@ package autonoma.proyectoFinal.models;
  * @author user
  */
 public class MedicamentoDeMarca extends Medicamento {
-    private String fabricante;
+    String fabricante;
 
     public MedicamentoDeMarca(String nombre, String tipo, double precio, String fabricante) {
         super(nombre, tipo, precio);
@@ -18,6 +18,6 @@ public class MedicamentoDeMarca extends Medicamento {
 
     @Override
     public String toString() {
-        return super.toString() + ", Fabricante: " + fabricante;
+        return super.toString() + "," + fabricante;
     }
 }

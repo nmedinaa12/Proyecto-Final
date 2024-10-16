@@ -10,16 +10,16 @@ import java.io.Serializable;
  *
  * @author nmedi
  */
-public class Paciente implements Serializable {
-    private String nombre;
-    private String documentoIdentidad;
-    private int edad;
-    private String email;
-    private String telefono;
+public class Paciente {
+    String nombre;
+    String cedula;
+    int edad;
+    String email;
+    String telefono;
 
-    public Paciente(String nombre, String documentoIdentidad, int edad, String email, String telefono) {
+    public Paciente(String nombre, String cedula, int edad, String email, String telefono) {
         this.nombre = nombre;
-        this.documentoIdentidad = documentoIdentidad;
+        this.cedula = cedula;
         this.edad = edad;
         this.email = email;
         this.telefono = telefono;
@@ -27,6 +27,6 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + " (" + documentoIdentidad + "), Edad: " + edad + ", Email: " + email + ", Teléfono: " + telefono;
+        return nombre + "," + cedula + "," + edad + "," + email + "," + telefono;
     }
 }

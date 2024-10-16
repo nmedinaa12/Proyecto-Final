@@ -10,21 +10,17 @@ import java.io.Serializable;
  *
  * @author user
  */
-public class Gerente implements Serializable {
-    private String nombre;
-    private String documentoIdentidad;
-    private int edad;
-    private String departamento;
+public class Gerente {
+    String nombre;
+    String cedula;
 
-    public Gerente(String nombre, String documentoIdentidad, int edad, String departamento) {
+    public Gerente(String nombre, String cedula) {
         this.nombre = nombre;
-        this.documentoIdentidad = documentoIdentidad;
-        this.edad = edad;
-        this.departamento = departamento;
+        this.cedula = cedula;
     }
 
     @Override
     public String toString() {
-        return "Gerente: " + nombre + " (" + documentoIdentidad + "), Edad: " + edad + ", Departamento: " + departamento;
+        return nombre + "," + cedula;
     }
 }

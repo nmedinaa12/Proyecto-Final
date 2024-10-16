@@ -10,20 +10,19 @@ import java.io.Serializable;
  *
  * @author user
  */
-public class Localizacion implements Serializable {
-    private String pais;
-    private String ciudad;
-    private String direccion;
+public class Localizacion {
+    String direccion;
+    String ciudad;
 
-    public Localizacion(String pais, String ciudad, String direccion) {
-        this.pais = pais;
-        this.ciudad = ciudad;
+    public Localizacion(String direccion, String ciudad) {
         this.direccion = direccion;
+        this.ciudad = ciudad;
     }
 
     @Override
     public String toString() {
-        return "Localización: " + direccion + ", " + ciudad + ", " + pais;
+        return direccion + "," + ciudad;
     }
 }
+
 
