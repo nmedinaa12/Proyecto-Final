@@ -4,10 +4,29 @@
  */
 package autonoma.proyectoFinal.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Medicamento {
-    
+public abstract class Medicamento implements Serializable {
+    protected String nombre;
+    protected String tipo;
+    protected double precio;
+
+    public Medicamento(String nombre, String tipo, double precio) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + tipo + "), Precio: " + precio;
+    }
 }

@@ -8,23 +8,25 @@ import java.io.Serializable;
 
 /**
  *
- * @author user
+ * @author nmedi
  */
-public class Gerente implements Serializable {
+public class Paciente implements Serializable {
     private String nombre;
     private String documentoIdentidad;
     private int edad;
-    private String departamento;
+    private String email;
+    private String telefono;
 
-    public Gerente(String nombre, String documentoIdentidad, int edad, String departamento) {
+    public Paciente(String nombre, String documentoIdentidad, int edad, String email, String telefono) {
         this.nombre = nombre;
         this.documentoIdentidad = documentoIdentidad;
         this.edad = edad;
-        this.departamento = departamento;
+        this.email = email;
+        this.telefono = telefono;
     }
 
     @Override
     public String toString() {
-        return "Gerente: " + nombre + " (" + documentoIdentidad + "), Edad: " + edad + ", Departamento: " + departamento;
+        return nombre + " (" + documentoIdentidad + "), Edad: " + edad + ", Email: " + email + ", Teléfono: " + telefono;
     }
 }

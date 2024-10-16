@@ -9,5 +9,8 @@ package autonoma.proyectoFinal.models;
  * @author user
  */
 public class EmpleadoOperativo {
+
+    public EmpleadoOperativo(String pedro_Gómez, String string, int par, int par1, String limpieza) {
+    }
     
 }

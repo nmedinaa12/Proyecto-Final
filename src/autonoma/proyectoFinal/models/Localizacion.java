@@ -4,10 +4,26 @@
  */
 package autonoma.proyectoFinal.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Localizacion {
-    
+public class Localizacion implements Serializable {
+    private String pais;
+    private String ciudad;
+    private String direccion;
+
+    public Localizacion(String pais, String ciudad, String direccion) {
+        this.pais = pais;
+        this.ciudad = ciudad;
+        this.direccion = direccion;
+    }
+
+    @Override
+    public String toString() {
+        return "Localización: " + direccion + ", " + ciudad + ", " + pais;
+    }
 }
+
