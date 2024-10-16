@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package autonoma.proyectofinal.infertace;
+package autonoma.proyectoFinal.models;
 
 /**
  *
- * @author nmedi
+ * @author user
  */
-public class interface1 {
+public class EmpleadoOperativo {
     
 }
