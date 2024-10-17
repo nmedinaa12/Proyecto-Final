@@ -23,7 +23,7 @@ import java.util.Date;
  */
 
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
