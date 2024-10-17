@@ -5,19 +5,14 @@
 package autonoma.proyectoFinal.models;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 /**
  *
@@ -34,7 +29,7 @@ public class Hospital {
     private String logo;
     private double presupuesto;
     private double ventaAnual;
-    private Date fechaFundacion ;
+    private LocalDate fechaFundacion ;
     private boolean estadoFinanciero;
     private Gerente gerente;
     private Localizacion localizacion;
@@ -42,7 +37,7 @@ public class Hospital {
     private List<Paciente> pacientes = new ArrayList<>();
 
     public Hospital(String nombre, String direccion, String telefono, String logo, double presupuesto,
-                    double ventaAnual, Date fechaFundacion, Gerente gerente, Localizacion localizacion) {
+                    double ventaAnual, LocalDate fechaFundacion, Gerente gerente, Localizacion localizacion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -50,11 +45,110 @@ public class Hospital {
         this.presupuesto = presupuesto;
         this.ventaAnual = ventaAnual;
         this.fechaFundacion = fechaFundacion;
-        this.estadoFinanciero = true; // Por defecto, activo
+        this.estadoFinanciero = true;
         this.gerente = gerente;
         this.localizacion = localizacion;
     }
 
+    //get y set
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public double getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(double presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
+    public double getVentaAnual() {
+        return ventaAnual;
+    }
+
+    public void setVentaAnual(double ventaAnual) {
+        this.ventaAnual = ventaAnual;
+    }
+
+    public LocalDate getFechaFundacion() {
+        return fechaFundacion;
+    }
+
+    public void setFechaFundacion(LocalDate fechaFundacion) {
+        this.fechaFundacion = fechaFundacion;
+    }
+
+    public boolean isEstadoFinanciero() {
+        return estadoFinanciero;
+    }
+
+    public void setEstadoFinanciero(boolean estadoFinanciero) {
+        this.estadoFinanciero = estadoFinanciero;
+    }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
+    }
+
+    public Localizacion getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Localizacion localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+    
+    
     public void registrarPatrocinio(double monto) {
         this.presupuesto += monto;
         if (this.presupuesto < 0) {
@@ -82,7 +176,7 @@ public class Hospital {
     }
 
     public void actualizarDatosHospital(String nombre, String direccion, String telefono, String logo,
-                                         double presupuesto, Date fechaFundacion) {
+                                         double presupuesto, LocalDate fechaFundacion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -90,7 +184,7 @@ public class Hospital {
         this.presupuesto = presupuesto;
         this.fechaFundacion = fechaFundacion;
     }
-
+    
     // Métodos para persistencia
     public void cargarDatos(String rutaArchivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -115,8 +209,10 @@ public class Hospital {
                         this.ventaAnual = Double.parseDouble(hospitalDatos[5].trim());
 
                         // Cargar la fecha en formato YYYY-MM-DD
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                        this.fechaFundacion = sdf.parse(hospitalDatos[6].trim());
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        this.fechaFundacion = LocalDate.parse(hospitalDatos[6].trim(), formatter);
+
+
 
                         // Asignar el estado como boolean
                         this.estadoFinanciero = hospitalDatos[7].trim().equalsIgnoreCase("Activo");
@@ -131,22 +227,26 @@ public class Hospital {
                         System.err.println("Tipo de dato desconocido: " + clave);
                 }
             }
-        } catch (IOException | NumberFormatException | ParseException e) {
+        } catch (IOException | NumberFormatException | DateTimeParseException e) {
             System.err.println("Error al cargar datos: " + e.getMessage());
         }
     }
 
-    public String guardarDatos() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Hospital: ").append(this.nombre).append(", ")
-          .append(this.direccion).append(", ")
-          .append(this.telefono).append(", ")
-          .append(this.logo).append(", ")
-          .append(this.presupuesto).append(", ")
-          .append(this.ventaAnual).append(", ")
-          .append(new SimpleDateFormat("yyyy-MM-dd").format(this.fechaFundacion)).append(", ")
-          .append(this.estadoFinanciero ? "Activo" : "Inactivo");
-        // Puedes agregar otros datos si es necesario
-        return sb.toString();
+    public void guardarDatos(String filename) {
+        try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(filename))) {
+            writer.println("Hospital: " + nombre + ", " + direccion + ", " + telefono + ", " + logo + ", "
+                    + presupuesto + ", " + ventaAnual + ", " + fechaFundacion + ", "
+                    + (estadoFinanciero ? "Activo" : "En quiebra"));
+            // Guardar empleados
+            for (Empleado emp : empleados) {
+                writer.println(emp);
+            }
+            // Guardar pacientes
+            for (Paciente pac : pacientes) {
+                writer.println(pac);
+            }
+        } catch (java.io.IOException e) {
+            System.err.println("Error al guardar los datos: " + e.getMessage());
+        }
     }
 }

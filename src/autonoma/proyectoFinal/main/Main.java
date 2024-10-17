@@ -15,6 +15,8 @@ import autonoma.proyectoFinal.models.MedicamentoGenerico;
 import autonoma.proyectoFinal.models.MedicamentoMarca;
 import autonoma.proyectoFinal.models.Paciente;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -26,8 +28,10 @@ import java.util.Date;
 public class main {
     public static void main(String[] args) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechaFundacion = sdf.parse("2000-01-01");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaFundacion = LocalDate.parse("2000-01-01", formatter);
+
+
 
             Gerente gerente = new Gerente("Juan Pérez", "123456789", 45, "Medicina");
             Localizacion localizacion = new Localizacion(4.60971, -74.08175); // Bogotá
@@ -50,11 +54,16 @@ public class main {
 
             // Registrar patrocinio
             hospital.registrarPatrocinio(200000);
-            String datosGuardados = hospital.guardarDatos();
-            System.out.println(datosGuardados);
+
+            System.out.println(hospital.getFechaFundacion());
+            // Guardar datos archivo 
+            hospital.guardarDatos("hospital_datos.txt");
+            System.out.println("guardados");
+         
 
             // Cargar datos desde archivo
-            hospital.cargarDatos("hospital_data.txt");
+            hospital.cargarDatos("hospital_datos.txt");
+            System.out.println("cargar datos");
 
         } catch (Exception e) {
             e.printStackTrace();
