@@ -5,8 +5,10 @@
 package autonoma.proyectoFinal.models;
 
 /**
- *
- * @author user
+ * Hace alusion a la cita de un paciente.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 0.0.1
+ * @since 2024-10-18
  */
 public class Cita {
     

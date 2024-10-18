@@ -6,22 +6,29 @@ package autonoma.proyectoFinal.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author user
+/*
+ * Un trabajador es una persona que pone a disposición sus habilidades, conocimientos
+ * y esfuerzos para realizar un trabajo en beneficio de una empresa o empleador,
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 0.0.1
+ * @since 2024-10-18
  */
 public abstract class Empleado {
+    //Atributos 
     protected String nombre;
     protected String cedula;
     protected int edad;
     protected double salario;
-
+    
+    
     public Empleado(String nombre, String cedula, int edad, double salario) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.edad = edad;
         this.salario = salario;
     }
+    
+    //Metodos
 
     public abstract double calcularSalario();
 

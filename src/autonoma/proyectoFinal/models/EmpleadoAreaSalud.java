@@ -5,10 +5,17 @@
 package autonoma.proyectoFinal.models;
 
 /**
- *
- * @author user
+ * La clase EmpleadoAreaSalud extiende de la clase Empleado y representa a un empleado 
+ * que trabaja en el área de la salud. Incluye información adicional como la 
+ * especialidad médica y el número de horas trabajadas.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 0.0.1
+ * @since 2024-10-18
+ * 
  */
+
 public class EmpleadoAreaSalud extends Empleado {
+    //Atributos
     private String especialidad;
     private double numeroHorasTrabajadas;
 
@@ -18,7 +25,7 @@ public class EmpleadoAreaSalud extends Empleado {
         this.especialidad = especialidad;
         this.numeroHorasTrabajadas = numeroHorasTrabajadas;
     }
-
+    //Metodos 
     @Override
     public double calcularSalario() {
         return (salario * 0.012) * numeroHorasTrabajadas; // 1.2% por hora trabajada

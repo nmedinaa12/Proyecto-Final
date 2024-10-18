@@ -6,9 +6,13 @@ package autonoma.proyectoFinal.models;
 
 /**
  *
- * @author user
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 0.0.1
+ * @since 2024-10-18
+ * 
  */
 public class Enfermedad {
+    
     private String nombre;
     private String sintomas;
 
