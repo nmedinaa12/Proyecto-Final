@@ -17,15 +17,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author user
+ * Persona responsable de la administración y 
+ * supervisión de operaciones, personal y recursos 
+ * de una entidad, como un hospital o farmacia.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
+ * 
  */
 public class Gerente {
+    //Atributos
     private String nombre;
     private String cedula;
     private String edad;
     private String carrera;
-
+    
+    //Constructor
     public Gerente(String nombre, String cedula, String edad, String carrera) {
         this.nombre = nombre;
         this.cedula = cedula;
@@ -37,7 +44,7 @@ public class Gerente {
 
     }
     
-    // get y set
+    //Metodos de acceso
 
     public String getNombre() {
         return nombre;
@@ -70,7 +77,7 @@ public class Gerente {
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
-    
+    //Metodos
     public void actualizarDatosGerente(String nombre, String cedula, String edad,
                                          String carrera) {
         this.nombre = nombre;

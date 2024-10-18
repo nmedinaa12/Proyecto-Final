@@ -5,8 +5,9 @@
 package autonoma.proyectoFinal.views;
 
 /**
- *
- * @author user
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 public class AgregarMedicamento extends javax.swing.JDialog {
 

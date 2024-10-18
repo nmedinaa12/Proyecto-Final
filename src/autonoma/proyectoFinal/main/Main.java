@@ -23,11 +23,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-/**
- *
- * @author user
+/*
+ * Clase principal para cargar datos y gestionar el hospital y sus empleados.
+ * Esta clase incluye la carga de datos de un hospital, gerente y empleados desde archivos,
+ * así como la adición de nuevos empleados al hospital.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
-
 
 public class Main {
     public static void main(String[] args) {

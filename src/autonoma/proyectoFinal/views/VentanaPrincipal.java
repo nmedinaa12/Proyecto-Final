@@ -10,9 +10,12 @@ import autonoma.proyectoFinal.models.Hospital;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
 /**
- *
- * @author user
+ * Ventana principal que muestra la interfaz gráfica para gestionar
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 

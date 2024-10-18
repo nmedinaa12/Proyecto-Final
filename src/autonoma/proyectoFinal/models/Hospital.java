@@ -13,16 +13,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
 /**
- *
- * @author user
+ * Institución médica dedicada a la atención
+ * y tratamiento de pacientes. Ofrece diversos servicios 
+ * médicos y cuenta con personal especializado.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
+ * 
  */
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Hospital {
+    //Atributos
     private String nombre;
     private String direccion;
     private String telefono;
@@ -35,7 +40,8 @@ public class Hospital {
     private Localizacion localizacion;
     private List<Empleado> empleados = new ArrayList<>();
     private List<Paciente> pacientes = new ArrayList<>();
-
+    
+    // Constructor
     public Hospital(String nombre, String direccion, String telefono, String logo, double presupuesto,
                     double ventaAnual, LocalDate fechaFundacion, Gerente gerente, Localizacion localizacion) {
         this.nombre = nombre;
@@ -53,7 +59,7 @@ public class Hospital {
     public Hospital() {
     }
 
-    //get y set
+    //Metodos de acceso
 
     public String getNombre() {
         return nombre;
@@ -151,7 +157,7 @@ public class Hospital {
         this.pacientes = pacientes;
     }
     
-    
+    //Metodos
     public void registrarPatrocinio(double monto) {
         this.presupuesto += monto;
         if (this.presupuesto < 0) {

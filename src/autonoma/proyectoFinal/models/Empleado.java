@@ -6,16 +6,21 @@ package autonoma.proyectoFinal.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author user
+/*
+ * Un Empleado es una persona que pone a disposición sus habilidades, conocimientos
+ * y esfuerzos para realizar un trabajo en beneficio de una empresa o empleador,
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 public abstract class Empleado {
+    //Atributos 
     protected String nombre;
     protected String cedula;
     protected String edad;
     protected double salario;
-
+    
+    //Constructor
     public Empleado(String nombre, String cedula, String edad, double salario) {
         this.nombre = nombre;
         this.cedula = cedula;
@@ -23,7 +28,7 @@ public abstract class Empleado {
         this.salario = salario;
     }
     
-    // gett y sett
+    // Metodos de acceso
 
     public String getNombre() {
         return nombre;
@@ -57,7 +62,7 @@ public abstract class Empleado {
         this.salario = salario;
     }
     
-    
+    //Metodos
 
     public abstract double calcularSalario();
 

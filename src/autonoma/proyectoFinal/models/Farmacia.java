@@ -5,20 +5,27 @@
 package autonoma.proyectoFinal.models;
 
 /**
- *
- * @author user
+ * Establecimiento donde se almacenan y dispensan medicamentos y productos 
+ * relacionados con la salud. También puede gestionar el inventario de medicamentos.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
+ * 
  */
 import java.util.ArrayList;
 import java.util.List;
 
 public class Farmacia {
+    //Atributos
     private List<Medicamento> medicamentosDisponibles = new ArrayList<>();
     private Inventario inventario;
 
+    //constructor
     public Farmacia(Inventario inventario) {
         this.inventario = inventario;
     }
-
+    
+    //Metodos
     public void agregarMedicamento(Medicamento medicamento) {
         medicamentosDisponibles.add(medicamento);
         // Agregar al inventario

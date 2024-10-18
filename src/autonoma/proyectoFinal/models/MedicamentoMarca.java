@@ -5,17 +5,22 @@
 package autonoma.proyectoFinal.models;
 
 /**
- *
- * @author user
+ * Medicamento desarrollado y comercializado bajo un nombre de marca 
+ * específico. Suelen ser más caros debido a su desarrollo e investigación.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
+ * 
  */
 public class MedicamentoMarca extends Medicamento {
+    //Atributo
     private String marca;
-
+    //Constructror
     public MedicamentoMarca(String nombre, double precio, String marca) {
         super(nombre, precio);
         this.marca = marca;
     }
-
+    //Metodos
     @Override
     public void aplicarEfecto() {
         // Lógica para aplicar efecto del medicamento de marca

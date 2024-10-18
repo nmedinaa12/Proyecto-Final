@@ -13,8 +13,9 @@ import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author nmedi
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 public class GestionEmpleado extends javax.swing.JDialog {
 

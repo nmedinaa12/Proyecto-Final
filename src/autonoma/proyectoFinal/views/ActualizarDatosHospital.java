@@ -10,13 +10,14 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author user
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 
 
 public class ActualizarDatosHospital extends javax.swing.JDialog {
-    
+    //Atributos
     private Hospital hospital;
     private Gerente gerente;
     
