@@ -1,4 +1,4 @@
 Hospital: Hospital qwerty, Calle 6 N 20, 555-12123esae, logo.png, 1200000.0, 200000.0, 2000-01-12, Activo
 Empleado: Dr. Carlos, 987654321, 35, 5000.0
 Paciente: María López, 456789123, 30, maria@example.com, Saludable, 555-6789
-Gerente: carlos, 13456765432, 23, sistemas
+Gerente: juan, 13456765432, sistemas, 23
