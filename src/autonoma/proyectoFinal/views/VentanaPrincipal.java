@@ -4,8 +4,10 @@
  */
 package autonoma.proyectoFinal.views;
 
+import autonoma.proyectoFinal.models.Empleado;
 import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,7 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BtnActualizarDatosHospital2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnGestionEmpleado1 = new javax.swing.JPanel();
+        btnGestionEmpleado = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -157,10 +159,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnGestionEmpleado1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGestionEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGestionEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        btnGestionEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGestionEmpleado1MouseClicked(evt);
+                btnGestionEmpleadoMouseClicked(evt);
             }
         });
 
@@ -168,21 +170,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/proyectoFinal/images/icons8-empleado-48.png"))); // NOI18N
 
-        javax.swing.GroupLayout btnGestionEmpleado1Layout = new javax.swing.GroupLayout(btnGestionEmpleado1);
-        btnGestionEmpleado1.setLayout(btnGestionEmpleado1Layout);
-        btnGestionEmpleado1Layout.setHorizontalGroup(
-            btnGestionEmpleado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnGestionEmpleado1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btnGestionEmpleadoLayout = new javax.swing.GroupLayout(btnGestionEmpleado);
+        btnGestionEmpleado.setLayout(btnGestionEmpleadoLayout);
+        btnGestionEmpleadoLayout.setHorizontalGroup(
+            btnGestionEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnGestionEmpleadoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(btnGestionEmpleado1Layout.createSequentialGroup()
+            .addGroup(btnGestionEmpleadoLayout.createSequentialGroup()
                 .addComponent(jLabel8)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        btnGestionEmpleado1Layout.setVerticalGroup(
-            btnGestionEmpleado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnGestionEmpleado1Layout.createSequentialGroup()
+        btnGestionEmpleadoLayout.setVerticalGroup(
+            btnGestionEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnGestionEmpleadoLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -333,7 +335,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(btnGestionEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGestionEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnGestionPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
@@ -364,7 +366,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(80, 80, 80)
-                        .addComponent(btnGestionEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnGestionEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnGestionPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,9 +412,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnActualizarDatosHospital2MouseClicked
 
-    private void btnGestionEmpleado1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionEmpleado1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGestionEmpleado1MouseClicked
+    private void btnGestionEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionEmpleadoMouseClicked
+        Hospital hospitalActual = obtenerHospital(); // Obtiene el hospital actual
+        if (hospitalActual != null) {
+            // Asumimos que getEmpleados() devuelve un ArrayList<Empleado>
+            ArrayList<Empleado> empleados = (ArrayList<Empleado>) hospitalActual.getEmpleados(); 
+
+            // Pasamos el hospital y la lista de empleados al constructor de la ventana de actualización
+            GestionEmpleado gestion = new GestionEmpleado(this, true, hospitalActual, empleados);
+            gestion.setVisible(true);  // Mostramos la ventana
+        } else {
+            // Manejo de error si hospitalActual es null
+            JOptionPane.showMessageDialog(this, "El hospital no está inicializado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGestionEmpleadoMouseClicked
 
     private void btnReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseClicked
         // TODO add your handling code here:
@@ -444,7 +457,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel BtnActualizarDatosHospital;
     private javax.swing.JPanel BtnActualizarDatosHospital2;
     private javax.swing.JPanel btnCitas;
-    private javax.swing.JPanel btnGestionEmpleado1;
+    private javax.swing.JPanel btnGestionEmpleado;
     private javax.swing.JPanel btnGestionMedicamentos1;
     private javax.swing.JPanel btnGestionPaciente;
     private javax.swing.JPanel btnReportes;

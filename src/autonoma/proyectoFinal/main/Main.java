@@ -33,9 +33,7 @@ public class Main {
     public static void main(String[] args) {
         
         
-        try {
-
-         
+        try {   
             //Cargar Datos Hospital
             Hospital hospital = Hospital.cargarDatosHospital("hospital_datos.txt");
 
@@ -66,6 +64,13 @@ public class Main {
             System.out.println(nuevoEmpleadoSalud);
             hospital.agregarEmpleado(nuevoEmpleadoSalud);
             System.out.println("Empleado del área de salud agregado.");
+            
+             // Agregar un empleado del área de salud
+            Empleado nuevoEmpleadoSalud1 = new EmpleadoAreaSalud("Dr. Ana", "123456789", "40", 8000.0, "Pediatría", 40);
+            System.out.println(nuevoEmpleadoSalud1);
+            hospital.agregarEmpleado(nuevoEmpleadoSalud1);
+            System.out.println("Empleado del área de salud agregado.");
+
 
             // Agregar un empleado operativo
             Empleado nuevoEmpleadoOperativo = new EmpleadoOperativo("Carlos Pérez", "987654321", "35", 5000.0, "Logística");
@@ -74,29 +79,29 @@ public class Main {
             System.out.println("Empleado operativo agregado.");
             
 
-//            // Modificar un empleado del área de salud (cambiando salario y especialidad)
-//            Empleado empleadoModificadoSalud = new EmpleadoAreaSalud("Dr. Ana", "123456789", "40", 8500.0, "Neurología", 45);
-//            boolean modificadoSalud = hospital.modificarEmpleado("123456789", empleadoModificadoSalud);
-//            if (modificadoSalud) {
-//                System.out.println("Empleado del área de salud modificado.");
-//            } else {
-//                System.out.println("Empleado no encontrado.");
-//            }
-//
-//
-//            // Modificar un empleado operativo (cambiando el área)
-//            Empleado empleadoModificadoOperativo = new EmpleadoOperativo("Carlos Pérez", "987654321", "35", 5500.0, "Mantenimiento");
-//            boolean modificadoOperativo = hospital.modificarEmpleado("987654321", empleadoModificadoOperativo);
-//            if (modificadoOperativo) {
-//                System.out.println("Empleado operativo modificado.");
-//            } else {
-//                System.out.println("Empleado no encontrado.");
-//            }
+            // Modificar un empleado del área de salud (cambiando salario y especialidad)
+            Empleado empleadoModificadoSalud = new EmpleadoAreaSalud("Dr. Ana", "123456789", "40", 8500.0, "Neurología", 45);
+            boolean modificadoSalud = hospital.modificarEmpleado("123456789", empleadoModificadoSalud);
+            if (modificadoSalud) {
+                System.out.println("Empleado del área de salud modificado.");
+            } else {
+                System.out.println("Empleado no encontrado.");
+            }
 
 
-        
+            // Modificar un empleado operativo (cambiando el área)
+            Empleado empleadoModificadoOperativo = new EmpleadoOperativo("Carlos Pérez", "987654321", "35", 5500.0, "Mantenimiento");
+            boolean modificadoOperativo = hospital.modificarEmpleado("987654321", empleadoModificadoOperativo);
+            if (modificadoOperativo) {
+                System.out.println("Empleado operativo modificado.");
+            } else {
+                System.out.println("Empleado no encontrado.");
+            }
+
+            hospital.eliminarEmpleado("234567");
+   
             
-//            new VentanaPrincipal(gerente,hospital).setVisible(true);
+            new VentanaPrincipal(gerente,hospital).setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();

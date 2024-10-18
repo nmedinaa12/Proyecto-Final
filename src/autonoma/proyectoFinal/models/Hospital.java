@@ -257,21 +257,35 @@ public class Hospital {
     }
     
     // Método para agregar un nuevo empleado
-    public void agregarEmpleado(Empleado empleado) {
+    public boolean agregarEmpleado(Empleado empleado) {
+        // Verificar si ya existe un empleado con la misma cédula
+        for (Empleado emp : empleados) {
+            if (emp.getCedula().equals(empleado.getCedula())) {
+                System.out.println("Error: Ya existe un empleado con la cédula " + empleado.getCedula());
+                return false; // No agregar el empleado si la cédula ya existe
+            }
+        }
+        // Si no existe, agregar el nuevo empleado
         empleados.add(empleado);
+
+        // Guardar los datos actualizados en el archivo
         guardarDatosEmpleado("hospital_datos.txt");
+
+        return true; // Confirmar que el empleado fue agregado exitosamente
     }
+
 
     // Método para modificar un empleado por su número de cédula
     public boolean modificarEmpleado(String cedula, Empleado nuevoEmpleado) {
         for (int i = 0; i < empleados.size(); i++) {
             if (empleados.get(i).getCedula().equals(cedula)) {
                 empleados.set(i, nuevoEmpleado);
+                // Vuelve a escribir todos los empleados en el archivo después de la modificación
                 guardarDatosEmpleado("hospital_datos.txt");
                 return true;
             }
         }
-        return false;  // Si no se encontró el empleado con esa cédula
+        return false;
     }
 
     // Método para eliminar un empleado por su número de cédula
@@ -297,13 +311,16 @@ public class Hospital {
         try (BufferedReader br = new BufferedReader(new FileReader(link))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                lineas.add(linea);
+                // Excluir líneas que contienen "Empleado:" (vamos a reemplazarlas más adelante)
+                if (!linea.startsWith("Empleado:")) {
+                    lineas.add(linea);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Encontrar la posición de la línea que contiene "Paciente:"
+        // Encontrar la posición de la línea que contiene "Paciente:" para insertar antes de ella
         int indicePaciente = -1;
         for (int i = 0; i < lineas.size(); i++) {
             if (lineas.get(i).startsWith("Paciente:")) {
@@ -312,7 +329,12 @@ public class Hospital {
             }
         }
 
-        // Agregar los nuevos empleados antes de "Paciente:"
+        // Si no se encontró "Paciente:", agregamos al final del archivo
+        if (indicePaciente == -1) {
+            indicePaciente = lineas.size();
+        }
+
+        // Agregar los empleados actualizados antes de "Paciente:"
         for (Empleado emp : empleados) {
             String nuevaLinea;
             if (emp instanceof EmpleadoAreaSalud) {
@@ -328,14 +350,12 @@ public class Hospital {
                 continue; // Si no es un tipo reconocido, omitir
             }
 
-            // Insertar la nueva línea en la posición correcta solo si no está ya en la lista
-            if (!lineas.contains(nuevaLinea)) {
-                lineas.add(indicePaciente, nuevaLinea);
-                indicePaciente++; // Incrementar solo si se ha agregado una nueva línea
-            }
+            // Insertar la nueva línea de empleado en la posición correcta
+            lineas.add(indicePaciente, nuevaLinea);
+            indicePaciente++; // Mover el índice para que los empleados se inserten en orden
         }
 
-        // Escribir de nuevo todo el contenido en el archivo
+        // Escribir de nuevo todo el contenido en el archivo, con los empleados actualizados
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(link))) {
             for (String l : lineas) {
                 bw.write(l + "\n");
@@ -344,6 +364,7 @@ public class Hospital {
             e.printStackTrace();
         }
     }
+
 
 
 }
