@@ -32,7 +32,6 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
             txtTelefono.setText(hospital.getTelefono());
             txtPresupuesto.setText(String.valueOf(hospital.getPresupuesto()));
             txtFechaFundacion.setText(hospital.getFechaFundacion().toString());
-            txtEstadoFundacion.setText(hospital.isEstadoFinanciero() ? "Activo" : "Inactivo");
         } else {
             // Manejo del caso cuando el hospital es nulo
             JOptionPane.showMessageDialog(this, "El hospital no está inicializado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -246,12 +245,11 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
-        String logo = txtLogo.getText();
         double presupuesto = Double.parseDouble(txtPresupuesto.getText());
         LocalDate fechaFundacion = LocalDate.parse(txtFechaFundacion.getText()); // Convertir String a LocalDate
 
         // Actualizar los datos del hospital
-        hospital.actualizarDatosHospital(nombre, direccion, telefono, logo, presupuesto, fechaFundacion);
+        hospital.actualizarDatosHospital(nombre, direccion, telefono, presupuesto, fechaFundacion);
 
 
         JOptionPane.showMessageDialog(null, "Datos del hospital actualizados correctamente.");

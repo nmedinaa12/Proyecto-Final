@@ -9,8 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -21,7 +19,6 @@ import java.time.format.DateTimeParseException;
  * @author user
  */
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Hospital {
@@ -180,12 +177,11 @@ public class Hospital {
         pacientes.add(paciente);
     }
 
-    public void actualizarDatosHospital(String nombre, String direccion, String telefono, String logo,
+    public void actualizarDatosHospital(String nombre, String direccion, String telefono,
                                          double presupuesto, LocalDate fechaFundacion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.logo = logo;
         this.presupuesto = presupuesto;
         this.fechaFundacion = fechaFundacion;
         
