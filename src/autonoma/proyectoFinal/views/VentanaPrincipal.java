@@ -44,9 +44,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        BtnActualizarDatosHospital1 = new javax.swing.JPanel();
+        btnGestionEmpleado = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        BtnActualizarDatosHospital2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -58,50 +61,82 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(0, 0, 0))
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        BtnActualizarDatosHospital1.setBackground(new java.awt.Color(255, 255, 255));
-        BtnActualizarDatosHospital1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGestionEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        btnGestionEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnActualizarDatosHospital1MouseClicked(evt);
+                btnGestionEmpleadoMouseClicked(evt);
             }
         });
 
-        jLabel4.setText("Actualizar Hospital");
+        jLabel4.setText("Gestion Empleado");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/proyectoFinal/images/icons8-actualizar (2).gif"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/proyectoFinal/images/icons8-empleado-48.png"))); // NOI18N
 
-        javax.swing.GroupLayout BtnActualizarDatosHospital1Layout = new javax.swing.GroupLayout(BtnActualizarDatosHospital1);
-        BtnActualizarDatosHospital1.setLayout(BtnActualizarDatosHospital1Layout);
-        BtnActualizarDatosHospital1Layout.setHorizontalGroup(
-            BtnActualizarDatosHospital1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnActualizarDatosHospital1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+        javax.swing.GroupLayout btnGestionEmpleadoLayout = new javax.swing.GroupLayout(btnGestionEmpleado);
+        btnGestionEmpleado.setLayout(btnGestionEmpleadoLayout);
+        btnGestionEmpleadoLayout.setHorizontalGroup(
+            btnGestionEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnGestionEmpleadoLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BtnActualizarDatosHospital1Layout.createSequentialGroup()
+            .addGroup(btnGestionEmpleadoLayout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        BtnActualizarDatosHospital1Layout.setVerticalGroup(
-            BtnActualizarDatosHospital1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnActualizarDatosHospital1Layout.createSequentialGroup()
+        btnGestionEmpleadoLayout.setVerticalGroup(
+            btnGestionEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnGestionEmpleadoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
+                .addContainerGap())
+        );
+
+        BtnActualizarDatosHospital2.setBackground(new java.awt.Color(255, 255, 255));
+        BtnActualizarDatosHospital2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnActualizarDatosHospital2MouseClicked(evt);
+            }
+        });
+
+        jLabel6.setText("Actualizar Hospital");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/proyectoFinal/images/icons8-actualizar (2).gif"))); // NOI18N
+
+        javax.swing.GroupLayout BtnActualizarDatosHospital2Layout = new javax.swing.GroupLayout(BtnActualizarDatosHospital2);
+        BtnActualizarDatosHospital2.setLayout(BtnActualizarDatosHospital2Layout);
+        BtnActualizarDatosHospital2Layout.setHorizontalGroup(
+            BtnActualizarDatosHospital2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnActualizarDatosHospital2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(BtnActualizarDatosHospital2Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        BtnActualizarDatosHospital2Layout.setVerticalGroup(
+            BtnActualizarDatosHospital2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnActualizarDatosHospital2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
                 .addContainerGap())
         );
 
@@ -110,16 +145,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(BtnActualizarDatosHospital1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179)
+                .addComponent(btnGestionEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(BtnActualizarDatosHospital2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(503, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(BtnActualizarDatosHospital1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addComponent(btnGestionEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(79, 79, 79)
+                    .addComponent(BtnActualizarDatosHospital2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(146, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,7 +181,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -144,7 +189,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnActualizarDatosHospital1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospital1MouseClicked
+    private void btnGestionEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionEmpleadoMouseClicked
         Hospital hospitalActual = obtenerHospital();  
         Gerente gerenteActual = obtenerGerente();
         if (hospitalActual != null) {
@@ -155,14 +200,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             // Manejo de error si hospitalActual es null
             JOptionPane.showMessageDialog(this, "El hospital no está inicializado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_BtnActualizarDatosHospital1MouseClicked
+    }//GEN-LAST:event_btnGestionEmpleadoMouseClicked
+
+    private void BtnActualizarDatosHospital2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospital2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnActualizarDatosHospital2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BtnActualizarDatosHospital1;
+    private javax.swing.JPanel BtnActualizarDatosHospital2;
+    private javax.swing.JPanel btnGestionEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
