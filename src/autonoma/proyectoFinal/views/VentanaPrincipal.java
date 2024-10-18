@@ -4,6 +4,7 @@
  */
 package autonoma.proyectoFinal.views;
 
+import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
 import javax.swing.JOptionPane;
 
@@ -14,15 +15,21 @@ import javax.swing.JOptionPane;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private Hospital hospital;
+    private Gerente gerente;
     
-    public VentanaPrincipal(Hospital hospital1) {
-        this.hospital = hospital1;
+    public VentanaPrincipal(Gerente gerente,Hospital hospital) {
+        this.hospital = hospital;
+        this.gerente = gerente;
         initComponents();
         
     }
     
     public Hospital obtenerHospital() {
         return this.hospital; // Devuelve la instancia del hospital
+    }
+    
+    public Gerente obtenerGerente() {
+        return this.gerente; // Devuelve la instancia del hospital
     }
 
     /**
@@ -138,10 +145,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnActualizarDatosHospital1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospital1MouseClicked
-        Hospital hospitalActual = obtenerHospital();  // Asegúrate de que este método devuelve una instancia no nula de Hospital.
+        Hospital hospitalActual = obtenerHospital();  
+        Gerente gerenteActual = obtenerGerente();
         if (hospitalActual != null) {
             // Pasamos el hospital al constructor de la ventana de actualización
-            ActualizarDatosHospital actualizarHospital = new ActualizarDatosHospital(hospitalActual,this,true);
+            ActualizarDatosHospital actualizarHospital = new ActualizarDatosHospital(gerenteActual,hospitalActual,this,true);
             actualizarHospital.setVisible(true);  // Mostramos la ventana
         } else {
             // Manejo de error si hospitalActual es null

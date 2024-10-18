@@ -9,8 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -21,7 +19,6 @@ import java.time.format.DateTimeParseException;
  * @author user
  */
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Hospital {
@@ -180,20 +177,19 @@ public class Hospital {
         pacientes.add(paciente);
     }
 
-    public void actualizarDatosHospital(String nombre, String direccion, String telefono, String logo,
+    public void actualizarDatosHospital(String nombre, String direccion, String telefono,
                                          double presupuesto, LocalDate fechaFundacion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.logo = logo;
         this.presupuesto = presupuesto;
         this.fechaFundacion = fechaFundacion;
         
-        guardarDatos("hospital_datos.txt");
+        guardarDatosHospital("hospital_datos.txt");
     }
     
     // Métodos para persistencia
-    public static Hospital cargarDatos(String rutaArchivo) {
+    public static Hospital cargarDatosHospital(String rutaArchivo) {
         Hospital hospital = new Hospital();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
@@ -223,14 +219,6 @@ public class Hospital {
                         // Asignar el estado como boolean
                         hospital.estadoFinanciero = hospitalDatos[7].trim().equalsIgnoreCase("Activo");
                         break;
-                    case "Empleado":
-                        // Procesar datos del empleado
-                        break;
-                    case "Paciente":
-                        // Procesar datos del paciente
-                        break;
-                    default:
-                        System.err.println("Tipo de dato desconocido: " + clave);
                 }
             }
         } catch (IOException | NumberFormatException | DateTimeParseException e) {
@@ -239,7 +227,7 @@ public class Hospital {
         return hospital;
     }
 
-    public void guardarDatos(String filename) {
+    public void guardarDatosHospital(String filename) {
         List<String> lineas = new ArrayList<>();
 
         // Leer el archivo existente y reemplazar la línea del hospital

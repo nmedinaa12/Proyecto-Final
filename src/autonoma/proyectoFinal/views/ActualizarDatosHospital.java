@@ -4,6 +4,7 @@
  */
 package autonoma.proyectoFinal.views;
 
+import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -17,10 +18,12 @@ import javax.swing.JOptionPane;
 public class ActualizarDatosHospital extends javax.swing.JDialog {
     
     private Hospital hospital;
+    private Gerente gerente;
     
-    public ActualizarDatosHospital(Hospital hospital,java.awt.Frame parent, boolean modal) {
+    public ActualizarDatosHospital(Gerente gerente, Hospital hospital,java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.hospital = hospital;
+        this.gerente = gerente;
         initComponents();
         inicializarCampos();
     }
@@ -32,13 +35,15 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
             txtTelefono.setText(hospital.getTelefono());
             txtPresupuesto.setText(String.valueOf(hospital.getPresupuesto()));
             txtFechaFundacion.setText(hospital.getFechaFundacion().toString());
-            txtEstadoFundacion.setText(hospital.isEstadoFinanciero() ? "Activo" : "Inactivo");
         } else {
             // Manejo del caso cuando el hospital es nulo
             JOptionPane.showMessageDialog(this, "El hospital no está inicializado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
+    public Gerente obtenerGerente() {
+        return this.gerente; // Devuelve la instancia del hospital
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,6 +66,7 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
         txtFechaFundacion = new javax.swing.JTextField();
         txtPresupuesto = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        btnActualizarLocalizacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -105,7 +111,7 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
 
         jLabel7.setText("Presupuesto: ");
 
-        btnActualizarHospital.setText("Actualizar Localizacion");
+        btnActualizarHospital.setText("Actualizar Datos");
         btnActualizarHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarHospitalActionPerformed(evt);
@@ -144,6 +150,13 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
             }
         });
 
+        btnActualizarLocalizacion.setText("Actualizar Localizacion");
+        btnActualizarLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarLocalizacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -175,12 +188,16 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnActualizarHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnActualizarHospital, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnActualizarGerente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnActualizarGerente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizarLocalizacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,35 +209,33 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnActualizarHospital)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizarLocalizacion))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel4)
                         .addGap(2, 2, 2)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFechaFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(17, 17, 17)
                         .addComponent(btnActualizarGerente)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(btnVolver)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver)
+                    .addComponent(btnActualizarHospital))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,19 +261,24 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
-        String logo = txtLogo.getText();
         double presupuesto = Double.parseDouble(txtPresupuesto.getText());
         LocalDate fechaFundacion = LocalDate.parse(txtFechaFundacion.getText()); // Convertir String a LocalDate
 
         // Actualizar los datos del hospital
-        hospital.actualizarDatosHospital(nombre, direccion, telefono, logo, presupuesto, fechaFundacion);
+        hospital.actualizarDatosHospital(nombre, direccion, telefono, presupuesto, fechaFundacion);
 
 
         JOptionPane.showMessageDialog(null, "Datos del hospital actualizados correctamente.");
     }//GEN-LAST:event_btnActualizarHospitalActionPerformed
 
     private void btnActualizarGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarGerenteActionPerformed
-        // TODO add your handling code here:
+        Gerente gerenteActual = obtenerGerente();  // Asegúrate de que este método devuelve una instancia no nula de Hospital.
+        if (gerenteActual != null) {
+            // Pasamos el hospital al constructor de la ventana de actualización
+            ActualizarGerente actualizarGerente = new ActualizarGerente(gerenteActual, new javax.swing.JFrame(), true);
+            actualizarGerente.setVisible(true);
+
+        }
     }//GEN-LAST:event_btnActualizarGerenteActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -277,10 +297,15 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionActionPerformed
 
+    private void btnActualizarLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarLocalizacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarLocalizacionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarGerente;
     private javax.swing.JButton btnActualizarHospital;
+    private javax.swing.JButton btnActualizarLocalizacion;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

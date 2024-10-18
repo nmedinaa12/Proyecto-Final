@@ -64,17 +64,30 @@ public class Main {
 //            hospital.guardarDatos("hospital_datos.txt");
 //            System.out.println("guardados");
          
-            Hospital hospital = Hospital.cargarDatos("hospital_datos.txt");
+            //Cargar Datos Hospital
+            Hospital hospital = Hospital.cargarDatosHospital("hospital_datos.txt");
 
             // Aquí puedes probar los datos cargados del hospital
             System.out.println("Nombre del hospital: " + hospital.getNombre());
             System.out.println("Nombre del hospital: " + hospital.getFechaFundacion());
 
             // Cargar datos desde archivo
-            hospital.cargarDatos("hospital_datos.txt");
-            System.out.println("cargar datos");
+            hospital.cargarDatosHospital("hospital_datos.txt");
+            System.out.println("cargar datos hospital");
             
-            new VentanaPrincipal(hospital).setVisible(true);
+            //Cargar Datos Hospital
+            Gerente gerente = Gerente.cargarDatosGerente("hospital_datos.txt");
+
+            // Aquí puedes probar los datos cargados del hospital
+            System.out.println("Nombre del gerente: " + gerente.getNombre());
+
+            // Cargar datos desde archivo
+            gerente.cargarDatosGerente("hospital_datos.txt");
+            System.out.println("cargar datos gerente");
+            
+            
+            
+            new VentanaPrincipal(gerente,hospital).setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
