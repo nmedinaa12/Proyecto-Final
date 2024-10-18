@@ -246,7 +246,6 @@ public class ActualizarDatosHospital extends javax.swing.JDialog {
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
-        String logo = txtLogo.getText();
         double presupuesto = Double.parseDouble(txtPresupuesto.getText());
         LocalDate fechaFundacion = LocalDate.parse(txtFechaFundacion.getText()); // Convertir String a LocalDate
 
