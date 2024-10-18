@@ -5,7 +5,9 @@
 package autonoma.proyectoFinal.models;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,9 @@ public class Hospital {
         this.estadoFinanciero = true;
         this.gerente = gerente;
         this.localizacion = localizacion;
+    }
+    
+    public Hospital() {
     }
 
     //get y set
@@ -183,10 +188,13 @@ public class Hospital {
         this.logo = logo;
         this.presupuesto = presupuesto;
         this.fechaFundacion = fechaFundacion;
+        
+        guardarDatos("hospital_datos.txt");
     }
     
     // Métodos para persistencia
-    public void cargarDatos(String rutaArchivo) {
+    public static Hospital cargarDatos(String rutaArchivo) {
+        Hospital hospital = new Hospital();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -201,21 +209,19 @@ public class Hospital {
                 switch (clave) {
                     case "Hospital":
                         String[] hospitalDatos = valor.split(",");
-                        this.nombre = hospitalDatos[0].trim();
-                        this.direccion = hospitalDatos[1].trim();
-                        this.telefono = hospitalDatos[2].trim();
-                        this.logo = hospitalDatos[3].trim();
-                        this.presupuesto = Double.parseDouble(hospitalDatos[4].trim());
-                        this.ventaAnual = Double.parseDouble(hospitalDatos[5].trim());
+                        hospital.nombre = hospitalDatos[0].trim();
+                        hospital.direccion = hospitalDatos[1].trim();
+                        hospital.telefono = hospitalDatos[2].trim();
+                        hospital.logo = hospitalDatos[3].trim();
+                        hospital.presupuesto = Double.parseDouble(hospitalDatos[4].trim());
+                        hospital.ventaAnual = Double.parseDouble(hospitalDatos[5].trim());
 
                         // Cargar la fecha en formato YYYY-MM-DD
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                        this.fechaFundacion = LocalDate.parse(hospitalDatos[6].trim(), formatter);
-
-
+                        hospital.fechaFundacion = LocalDate.parse(hospitalDatos[6].trim(), formatter);
 
                         // Asignar el estado como boolean
-                        this.estadoFinanciero = hospitalDatos[7].trim().equalsIgnoreCase("Activo");
+                        hospital.estadoFinanciero = hospitalDatos[7].trim().equalsIgnoreCase("Activo");
                         break;
                     case "Empleado":
                         // Procesar datos del empleado
@@ -230,23 +236,38 @@ public class Hospital {
         } catch (IOException | NumberFormatException | DateTimeParseException e) {
             System.err.println("Error al cargar datos: " + e.getMessage());
         }
+        return hospital;
     }
 
     public void guardarDatos(String filename) {
-        try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(filename))) {
-            writer.println("Hospital: " + nombre + ", " + direccion + ", " + telefono + ", " + logo + ", "
-                    + presupuesto + ", " + ventaAnual + ", " + fechaFundacion + ", "
-                    + (estadoFinanciero ? "Activo" : "En quiebra"));
-            // Guardar empleados
-            for (Empleado emp : empleados) {
-                writer.println(emp);
+        List<String> lineas = new ArrayList<>();
+
+        // Leer el archivo existente y reemplazar la línea del hospital
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                // Si la línea comienza con "Hospital:", la reemplazamos
+                if (linea.startsWith("Hospital:")) {
+                    String nuevaLinea = "Hospital: " + nombre + ", " + direccion + ", " + telefono + ", "
+                            + logo + ", " + presupuesto + ", " + ventaAnual + ", " + fechaFundacion + ", "
+                            + (estadoFinanciero ? "Activo" : "En quiebra");
+                    lineas.add(nuevaLinea); // Agregamos la nueva línea
+                } else {
+                    lineas.add(linea); // Agregamos la línea sin cambios
+                }
             }
-            // Guardar pacientes
-            for (Paciente pac : pacientes) {
-                writer.println(pac);
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+
+        // Escribir el contenido actualizado de vuelta en el archivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (String l : lineas) {
+                writer.write(l);
+                writer.newLine(); // Aseguramos que haya un salto de línea después de cada línea
             }
-        } catch (java.io.IOException e) {
-            System.err.println("Error al guardar los datos: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
 }
