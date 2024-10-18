@@ -9,7 +9,7 @@ package autonoma.proyectoFinal.models;
  * que trabaja en el área de la salud. Incluye información adicional como la 
  * especialidad médica y el número de horas trabajadas.
  * @author Mariana Salgado & Nicolas Fernando Medina
- * @version 0.0.1
+ * @version 1.0.0
  * @since 2024-10-18
  * 
  */
@@ -18,13 +18,31 @@ public class EmpleadoAreaSalud extends Empleado {
     //Atributos
     private String especialidad;
     private double numeroHorasTrabajadas;
-
-    public EmpleadoAreaSalud(String nombre, String cedula, int edad, double salario,
+    
+    //Constructor
+    public EmpleadoAreaSalud(String nombre, String cedula, String edad, double salario,
                              String especialidad, double numeroHorasTrabajadas) {
         super(nombre, cedula, edad, salario);
         this.especialidad = especialidad;
         this.numeroHorasTrabajadas = numeroHorasTrabajadas;
     }
+    // Metodos de acceso
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public double getNumeroHorasTrabajadas() {
+        return numeroHorasTrabajadas;
+    }
+
+    public void setNumeroHorasTrabajadas(double numeroHorasTrabajadas) {
+        this.numeroHorasTrabajadas = numeroHorasTrabajadas;
+    }
+
     //Metodos 
     @Override
     public double calcularSalario() {

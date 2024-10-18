@@ -9,7 +9,7 @@ package autonoma.proyectoFinal.models;
  * que realiza tareas operativas. Incluye información adicional como el turno 
  * en el que trabaja y el número de horas trabajadas.
  * @author Mariana Salgado & Nicolas Fernando Medina
- * @version 0.0.1
+ * @version 1.0.0
  * @since 2024-10-18
  * 
  */
@@ -17,12 +17,25 @@ package autonoma.proyectoFinal.models;
 public class EmpleadoOperativo extends Empleado {
     //Atributo
     private String area;
-
-    public EmpleadoOperativo(String nombre, String cedula, int edad, double salario, String area) {
+    
+    // Constructor
+    public EmpleadoOperativo(String nombre, String cedula, String edad, double salario, String area) {
         super(nombre, cedula, edad, salario);
         this.area = area;
     }
-    //Metodos 
+    
+    //Metodos de acceso
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    
+    ///Metodos
     @Override
     public double calcularSalario() {
         return salario; // Salario fijo

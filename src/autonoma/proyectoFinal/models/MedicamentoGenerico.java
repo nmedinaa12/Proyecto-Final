@@ -5,17 +5,23 @@
 package autonoma.proyectoFinal.models;
 
 /**
- *
- * @author user
+ * Medicamento equivalente a uno de marca en términos de principios activos,
+ * dosis y efectos terapéuticos, pero generalmente a menor costo.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
+ * 
  */
 public class MedicamentoGenerico extends Medicamento {
+    //Atributo
     private String sustanciaActiva;
-
+    
+    //Constructor
     public MedicamentoGenerico(String nombre, double precio, String sustanciaActiva) {
         super(nombre, precio);
         this.sustanciaActiva = sustanciaActiva;
     }
-
+    //Metodos
     @Override
     public void aplicarEfecto() {
         // Lógica para aplicar efecto del medicamento genérico

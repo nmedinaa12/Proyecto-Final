@@ -1,1 +1,0 @@
-Hospital: Hospital San José , Calle 123, 555-1234, logo.png, 1200000.0, 200000.0, 2000-01-01, Activo

@@ -4,7 +4,9 @@
  */
 package autonoma.proyectoFinal.main;
 
+import autonoma.proyectoFinal.models.Empleado;
 import autonoma.proyectoFinal.models.EmpleadoAreaSalud;
+import autonoma.proyectoFinal.models.EmpleadoOperativo;
 import autonoma.proyectoFinal.models.Farmacia;
 import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
@@ -21,52 +23,27 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-/**
- *
- * @author user
+/*
+ * Clase principal para cargar datos y gestionar el hospital y sus empleados.
+ * Esta clase incluye la carga de datos de un hospital, gerente y empleados desde archivos,
+ * así como la adición de nuevos empleados al hospital.
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
-
 
 public class Main {
     public static void main(String[] args) {
         
         
         try {
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            LocalDate fechaFundacion = LocalDate.parse("2000-01-01", formatter);
-//
-//           
-//
-//            Gerente gerente = new Gerente("Juan Pérez", "123456789", 45, "Medicina");
-//            Localizacion localizacion = new Localizacion(4.60971, -74.08175); // Bogotá
-//            Hospital hospital = new Hospital("Hospital San José St. Bonaventure", "Calle 123", "555-1234",
-//                    "logo.png", 1000000.0, 200000.0, fechaFundacion, gerente, localizacion);
-//
-//            EmpleadoAreaSalud medico = new EmpleadoAreaSalud("Dr. Carlos", "987654321", 35, 5000.0, "Cardiología", 40);
-//            hospital.agregarEmpleado(medico);
-//
-//            Paciente paciente = new Paciente("María López", "456789123", 30, "maria@example.com", true, "555-6789");
-//            hospital.agregarPaciente(paciente);
-//
-//            // Agregar medicamentos
-//            Medicamento medicamento1 = new MedicamentoMarca("Paracetamol", 1000, "Marca A");
-//            Medicamento medicamento2 = new MedicamentoGenerico("Ibuprofeno", 800, "Ibuprofeno");
-//            Inventario inventario = new Inventario();
-//            Farmacia farmacia = new Farmacia(inventario);
-//            farmacia.agregarMedicamento(medicamento1);
-//            farmacia.agregarMedicamento(medicamento2);
-//
-//            // Registrar patrocinio
-//            hospital.registrarPatrocinio(200000);
-//
-//            System.out.println(hospital.getFechaFundacion());
-//            // Guardar datos archivo 
-//            hospital.guardarDatos("hospital_datos.txt");
-//            System.out.println("guardados");
+
          
             //Cargar Datos Hospital
             Hospital hospital = Hospital.cargarDatosHospital("hospital_datos.txt");
 
+            //Datos Hospital
+            
             // Aquí puedes probar los datos cargados del hospital
             System.out.println("Nombre del hospital: " + hospital.getNombre());
             System.out.println("Nombre del hospital: " + hospital.getFechaFundacion());
@@ -86,8 +63,43 @@ public class Main {
             System.out.println("cargar datos gerente");
             
             
+            //EMPLEADOS
+             // Agregar un empleado del área de salud
+            Empleado nuevoEmpleadoSalud = new EmpleadoAreaSalud("Dr. Ana", "123456789", "40", 8000.0, "Pediatría", 40);
+            System.out.println(nuevoEmpleadoSalud);
+            hospital.agregarEmpleado(nuevoEmpleadoSalud);
+            System.out.println("Empleado del área de salud agregado.");
+
+            // Agregar un empleado operativo
+            Empleado nuevoEmpleadoOperativo = new EmpleadoOperativo("Carlos Pérez", "987654321", "35", 5000.0, "Logística");
+            System.out.println(nuevoEmpleadoOperativo);
+            hospital.agregarEmpleado(nuevoEmpleadoOperativo);
+            System.out.println("Empleado operativo agregado.");
             
-            new VentanaPrincipal(gerente,hospital).setVisible(true);
+
+//            // Modificar un empleado del área de salud (cambiando salario y especialidad)
+//            Empleado empleadoModificadoSalud = new EmpleadoAreaSalud("Dr. Ana", "123456789", "40", 8500.0, "Neurología", 45);
+//            boolean modificadoSalud = hospital.modificarEmpleado("123456789", empleadoModificadoSalud);
+//            if (modificadoSalud) {
+//                System.out.println("Empleado del área de salud modificado.");
+//            } else {
+//                System.out.println("Empleado no encontrado.");
+//            }
+//
+//
+//            // Modificar un empleado operativo (cambiando el área)
+//            Empleado empleadoModificadoOperativo = new EmpleadoOperativo("Carlos Pérez", "987654321", "35", 5500.0, "Mantenimiento");
+//            boolean modificadoOperativo = hospital.modificarEmpleado("987654321", empleadoModificadoOperativo);
+//            if (modificadoOperativo) {
+//                System.out.println("Empleado operativo modificado.");
+//            } else {
+//                System.out.println("Empleado no encontrado.");
+//            }
+
+
+        
+            
+//            new VentanaPrincipal(gerente,hospital).setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();

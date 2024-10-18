@@ -8,9 +8,12 @@ import autonoma.proyectoFinal.models.Gerente;
 import autonoma.proyectoFinal.models.Hospital;
 import javax.swing.JOptionPane;
 
+
 /**
- *
- * @author user
+ * Ventana principal que muestra la interfaz gráfica para gestionar
+ * @author Mariana Salgado & Nicolas Fernando Medina
+ * @version 1.0.0
+ * @since 2024-10-18
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -64,7 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnGestionMedicamentos1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        BtnActualizarDatosHospital3 = new javax.swing.JPanel();
+        BtnActualizarDatosHospital = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
@@ -107,12 +110,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnGestionPacienteLayout.setHorizontalGroup(
             btnGestionPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnGestionPacienteLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(btnGestionPacienteLayout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(btnGestionPacienteLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnGestionPacienteLayout.setVerticalGroup(
             btnGestionPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +215,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnReportesLayout.setHorizontalGroup(
             btnReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnReportesLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(btnReportesLayout.createSequentialGroup()
@@ -293,10 +295,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        BtnActualizarDatosHospital3.setBackground(new java.awt.Color(255, 255, 255));
-        BtnActualizarDatosHospital3.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnActualizarDatosHospital.setBackground(new java.awt.Color(255, 255, 255));
+        BtnActualizarDatosHospital.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnActualizarDatosHospital3MouseClicked(evt);
+                BtnActualizarDatosHospitalMouseClicked(evt);
             }
         });
 
@@ -304,21 +306,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/proyectoFinal/images/icons8-actualizar (2).gif"))); // NOI18N
 
-        javax.swing.GroupLayout BtnActualizarDatosHospital3Layout = new javax.swing.GroupLayout(BtnActualizarDatosHospital3);
-        BtnActualizarDatosHospital3.setLayout(BtnActualizarDatosHospital3Layout);
-        BtnActualizarDatosHospital3Layout.setHorizontalGroup(
-            BtnActualizarDatosHospital3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnActualizarDatosHospital3Layout.createSequentialGroup()
+        javax.swing.GroupLayout BtnActualizarDatosHospitalLayout = new javax.swing.GroupLayout(BtnActualizarDatosHospital);
+        BtnActualizarDatosHospital.setLayout(BtnActualizarDatosHospitalLayout);
+        BtnActualizarDatosHospitalLayout.setHorizontalGroup(
+            BtnActualizarDatosHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnActualizarDatosHospitalLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel17)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BtnActualizarDatosHospital3Layout.createSequentialGroup()
+            .addGroup(BtnActualizarDatosHospitalLayout.createSequentialGroup()
                 .addComponent(jLabel16)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        BtnActualizarDatosHospital3Layout.setVerticalGroup(
-            BtnActualizarDatosHospital3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnActualizarDatosHospital3Layout.createSequentialGroup()
+        BtnActualizarDatosHospitalLayout.setVerticalGroup(
+            BtnActualizarDatosHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnActualizarDatosHospitalLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -348,7 +350,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel2)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(BtnActualizarDatosHospital3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnActualizarDatosHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
                         .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -377,7 +379,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BtnActualizarDatosHospital2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BtnActualizarDatosHospital3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnActualizarDatosHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -404,16 +406,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionPacienteMouseClicked
-        Hospital hospitalActual = obtenerHospital();  
-        Gerente gerenteActual = obtenerGerente();
-        if (hospitalActual != null) {
-            // Pasamos el hospital al constructor de la ventana de actualización
-            ActualizarDatosHospital actualizarHospital = new ActualizarDatosHospital(gerenteActual,hospitalActual,this,true);
-            actualizarHospital.setVisible(true);  // Mostramos la ventana
-        } else {
-            // Manejo de error si hospitalActual es null
-            JOptionPane.showMessageDialog(this, "El hospital no está inicializado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }//GEN-LAST:event_btnGestionPacienteMouseClicked
 
     private void BtnActualizarDatosHospital2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospital2MouseClicked
@@ -436,14 +429,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionMedicamentos1MouseClicked
 
-    private void BtnActualizarDatosHospital3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospital3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnActualizarDatosHospital3MouseClicked
+    private void BtnActualizarDatosHospitalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarDatosHospitalMouseClicked
+        Hospital hospitalActual = obtenerHospital();  
+        Gerente gerenteActual = obtenerGerente();
+        if (hospitalActual != null) {
+            // Pasamos el hospital al constructor de la ventana de actualización
+            ActualizarDatosHospital actualizarHospital = new ActualizarDatosHospital(gerenteActual,hospitalActual,this,true);
+            actualizarHospital.setVisible(true);  // Mostramos la ventana
+        } else {
+            // Manejo de error si hospitalActual es null
+            JOptionPane.showMessageDialog(this, "El hospital no está inicializado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnActualizarDatosHospitalMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BtnActualizarDatosHospital;
     private javax.swing.JPanel BtnActualizarDatosHospital2;
-    private javax.swing.JPanel BtnActualizarDatosHospital3;
     private javax.swing.JPanel btnCitas;
     private javax.swing.JPanel btnGestionEmpleado1;
     private javax.swing.JPanel btnGestionMedicamentos1;
