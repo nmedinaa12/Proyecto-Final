@@ -19,6 +19,7 @@ import java.time.format.DateTimeParseException;
  * @author user
  */
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Hospital {
@@ -169,10 +170,6 @@ public class Hospital {
         System.out.println("El estado del hospital ha cambiado a: " + (estadoFinanciero ? "Activo" : "En quiebra"));
     }
 
-    public void agregarEmpleado(Empleado empleado) {
-        empleados.add(empleado);
-    }
-
     public void agregarPaciente(Paciente paciente) {
         pacientes.add(paciente);
     }
@@ -258,4 +255,95 @@ public class Hospital {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+    
+    // Método para agregar un nuevo empleado
+    public void agregarEmpleado(Empleado empleado) {
+        empleados.add(empleado);
+        guardarDatosEmpleado("hospital_datos.txt");
+    }
+
+    // Método para modificar un empleado por su número de cédula
+    public boolean modificarEmpleado(String cedula, Empleado nuevoEmpleado) {
+        for (int i = 0; i < empleados.size(); i++) {
+            if (empleados.get(i).getCedula().equals(cedula)) {
+                empleados.set(i, nuevoEmpleado);
+                guardarDatosEmpleado("hospital_datos.txt");
+                return true;
+            }
+        }
+        return false;  // Si no se encontró el empleado con esa cédula
+    }
+
+    // Método para eliminar un empleado por su número de cédula
+    public boolean eliminarEmpleado(String cedula) {
+        Iterator<Empleado> it = empleados.iterator();
+        while (it.hasNext()) {
+            Empleado emp = it.next();
+            if (emp.getCedula().equals(cedula)) {
+                it.remove();
+                guardarDatosEmpleado("hospital_datos.txt");
+                return true;
+            }
+        }
+        return false;  // Si no se encontró el empleado con esa cédula
+    }
+
+    // Guardar los empleados en el archivo de texto
+    private void guardarDatosEmpleado(String link) {
+        // Crear una lista para almacenar todas las líneas del archivo
+        List<String> lineas = new ArrayList<>();
+
+        // Leer el contenido existente del archivo
+        try (BufferedReader br = new BufferedReader(new FileReader(link))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Encontrar la posición de la línea que contiene "Paciente:"
+        int indicePaciente = -1;
+        for (int i = 0; i < lineas.size(); i++) {
+            if (lineas.get(i).startsWith("Paciente:")) {
+                indicePaciente = i;
+                break;
+            }
+        }
+
+        // Agregar los nuevos empleados antes de "Paciente:"
+        for (Empleado emp : empleados) {
+            String nuevaLinea;
+            if (emp instanceof EmpleadoAreaSalud) {
+                EmpleadoAreaSalud eSalud = (EmpleadoAreaSalud) emp;
+                nuevaLinea = "Empleado: " + eSalud.getNombre() + ", " + eSalud.getCedula() + ", " +
+                             eSalud.getEdad() + ", " + eSalud.getSalario() + ", " + eSalud.getEspecialidad() +
+                             ", " + eSalud.getNumeroHorasTrabajadas();
+            } else if (emp instanceof EmpleadoOperativo) {
+                EmpleadoOperativo eOperativo = (EmpleadoOperativo) emp;
+                nuevaLinea = "Empleado: " + eOperativo.getNombre() + ", " + eOperativo.getCedula() + ", " +
+                             eOperativo.getEdad() + ", " + eOperativo.getSalario() + ", " + eOperativo.getArea();
+            } else {
+                continue; // Si no es un tipo reconocido, omitir
+            }
+
+            // Insertar la nueva línea en la posición correcta solo si no está ya en la lista
+            if (!lineas.contains(nuevaLinea)) {
+                lineas.add(indicePaciente, nuevaLinea);
+                indicePaciente++; // Incrementar solo si se ha agregado una nueva línea
+            }
+        }
+
+        // Escribir de nuevo todo el contenido en el archivo
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(link))) {
+            for (String l : lineas) {
+                bw.write(l + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

@@ -11,11 +11,21 @@ package autonoma.proyectoFinal.models;
 public class EmpleadoOperativo extends Empleado {
     private String area;
 
-    public EmpleadoOperativo(String nombre, String cedula, int edad, double salario, String area) {
+    public EmpleadoOperativo(String nombre, String cedula, String edad, double salario, String area) {
         super(nombre, cedula, edad, salario);
         this.area = area;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    
+    
     @Override
     public double calcularSalario() {
         return salario; // Salario fijo
